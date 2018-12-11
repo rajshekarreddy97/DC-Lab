@@ -7,15 +7,15 @@ int main(int argc, char **argv)
   int i,j,threads;
   int x[10];
   int *sum_of_powers;
-  int n = 10;
+  int n=10;
 
-  if(argc> 1)
+  if(argc>1)
   {
     threads = atoi(argv[1]);
     if(omp_get_dynamic())
     {
       omp_set_dynamic(0);
-      printf("called omp_set_dynamic(0)\n");
+      printf("called omp_set_dynamic");
     }
     omp_set_num_threads(threads);
   }
@@ -23,14 +23,14 @@ int main(int argc, char **argv)
   printf("%d threads max\n", omp_get_max_threads());
   sum_of_powers = (int*)malloc(n * sizeof(int));
 
-  #pragma omp parallel for private(j) lastprivate(x)
+  #pragma omp parallel for private(j0 lastprivate(x)
   for(i=0;i<n;i++)
   {
-    printf("%d threads currently executing\n", omp_get_num_threads());
+    printf("%d threads executing \n", omp_get_num_threads());
     x[0] = 1;
     for(j=1;j<4;j++)
     {
-      x[j] = x[j-1] * (i+1);
+      x[j] = x[j-1] *(i+1);
     }
     sum_of_powers[i] = x[0] + x[1] + x[2] + x[3];
   }

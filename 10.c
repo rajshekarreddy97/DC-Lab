@@ -13,7 +13,7 @@ longlong factorial(long n)
   return(out);
 }
 
-int main(intargc, char **argv)
+int main(int argc, char **argv)
 {
   int i,j,threads;
   longlong *x;
