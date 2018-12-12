@@ -16,8 +16,8 @@ long long factorial(long n)
 int main(int argc, char **argv)
 {
   int i,j,threads;
-  longlong *x;
-  longlong n=12;
+  long long *x;
+  long long n=12;
 
   if(argc > 1)
   {
@@ -38,17 +38,18 @@ int main(int argc, char **argv)
 
 
   #pragma omp parallel for firstprivate(x,j)
-  for(i=1;i<n;i++)
   {
-    j+=i;
-    x[i] = j*x[i-1];
-  }
+    for(i=1;i<n;i++)
+    {
+      j+=i;
+      x[i] = j*x[i-1];
+    }
 
-  for(i=0;i<n;i++)
-  {
-    printf("factorial(%2d)=%14lld x[%2d]=%14lld\n", i,factorial(i),i,x[i]);
+    for(i=0;i<n;i++)
+    {
+      printf("factorial(%2d)=%14lld x[%2d]=%14lld\n", i,factorial(i),i,x[i]);
+    }
   }
-
   return 0;
 
 }
