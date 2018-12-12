@@ -2,9 +2,9 @@
 #include<malloc.h>
 #include<omp.h>
 
-longlong factorial(long n)
+long long factorial(long n)
 {
-  longlong i,out;
+  long long i,out;
   out = 1;
   for(i=1;i<n+1;i++)
   {
@@ -35,23 +35,20 @@ int main(int argc, char **argv)
   for(i=0;i<n;i++)
     x[i] = factorial(i);
   j=0;
-}
 
-#pragma omp parallel for firstprivate(x,j)
-for(i=1;i<n;i++)
-{
-  j+=i;
-  x[i] = j*x[i-1];
-}
 
-for(i=0;i<n;i++)
-{
-  j+=i;
-  x[i] = j*x[i-1];
-}
+  #pragma omp parallel for firstprivate(x,j)
+  for(i=1;i<n;i++)
+  {
+    j+=i;
+    x[i] = j*x[i-1];
+  }
 
-for(i=0;i<n;i++)
-{
-  printf("factorial(%2d)=%14lld x[%2d]=%14lld\n", i,factorial(i),i,x[i]);
+  for(i=0;i<n;i++)
+  {
+    printf("factorial(%2d)=%14lld x[%2d]=%14lld\n", i,factorial(i),i,x[i]);
+  }
+
   return 0;
+
 }
