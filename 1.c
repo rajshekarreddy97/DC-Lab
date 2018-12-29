@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     {
       #pragma omp section
       {
-        printf("Thread %d ding section 1\n",tid);
+        printf("Thread %d doing section 1\n",tid);
         for(i=0;i<N;i++)
         {
           c[i]=a[i]+b[i];
