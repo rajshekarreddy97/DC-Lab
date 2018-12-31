@@ -35,10 +35,12 @@ main()
   for(i=0;i<n;i++)
   {
     if(arr[i]>cur_max)
-    #pragma omp critical
-    if(arr[i]>cur_max)
     {
-      cur_max = arr[i];
+      #pragma omp critical
+      if(arr[i]>cur_max)
+      {
+        cur_max = arr[i];
+      }
     }
   }
 
