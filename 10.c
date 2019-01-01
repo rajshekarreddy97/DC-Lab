@@ -31,7 +31,7 @@ int main(int argc, char **argv)
   }
 
   printf("%d threads\n", omp_get_max_threads());
-  x = (longlong *)malloc(n * sizeof(long));
+  x = (long long *)malloc(n * sizeof(long));
   for(i=0;i<n;i++)
     x[i] = factorial(i);
   j=0;
